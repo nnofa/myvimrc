@@ -6,15 +6,17 @@ Plug 'leafgarland/typescript-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-scripts/findstr.vim'
 Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/copypath.vim'
 Plug 'tomasr/molokai'
 Plug 'pangloss/vim-javascript'
 Plug 'KabbAmine/gulp-vim'
 Plug 'vim-syntastic/syntastic'
-Plug 'palantir/tslint'
 Plug 'itchyny/lightline.vim'
 
 call plug#end()
+
+cd $NG2Web
 
 inoremap jj <Esc>
 inoremap ()h ()<Esc>i
@@ -24,8 +26,8 @@ inoremap {}h {}<Esc>i
 inoremap {};h {}<Esc>hi
 inoremap ()= () => {<CR>}<Esc>O
 inoremap <C-Space> <C-x><C-o>
-nnoremap <C-w><C-d> :cd ~/reactproj/ <CR>
-nnoremap <C-n> :Vexplore<CR>
+nnoremap <C-w><C-d> :cd $NG2Web<CR>
+nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-w><C-r> :Rfindstring
 nnoremap <C-w><C-f> :Findstring
 
@@ -36,7 +38,7 @@ nnoremap / /\c
 "save
 noremap <C-s> :w<CR>
 vnoremap <C-s> <C-c>:w<CR>
-inoremap <C-s> <C-c>:w<CR>
+inoremap <C-s> <C-o>:w<CR>
 
 "sort
 vnoremap <Leader>s :sort<CR>
@@ -52,7 +54,7 @@ let mapleader = ","
 
 "colorscheme and font
 colorscheme molokai
-set guifont=DejaVu_Sans_Mono_for_Powerline:h10
+set guifont=Consolas:h10
 
 "line numbering, relative for non-current line, absolute for current line
 set nu!
@@ -76,6 +78,7 @@ set list
 
 set clipboard=unnamed
 
+let NERDTreeShowHidden=1
 "ctrlp related settings"
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_max_files=0
@@ -92,6 +95,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
 
 "syntax highlighting
 filetype off
