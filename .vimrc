@@ -16,7 +16,7 @@ Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
-cd $NG2Web
+cd $NG
 
 inoremap jj <Esc>
 inoremap ()h ()<Esc>i
@@ -26,8 +26,9 @@ inoremap {}h {}<Esc>i
 inoremap {};h {}<Esc>hi
 inoremap ()= () => {<CR>}<Esc>O
 inoremap <C-Space> <C-x><C-o>
-nnoremap <C-w><C-d> :cd $NG2Web<CR>
-nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-w><C-d> :cd $NG<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-b> :NERDTreeFind<CR>
 nnoremap <C-w><C-r> :Rfindstring
 nnoremap <C-w><C-f> :Findstring
 
@@ -49,8 +50,6 @@ vnoremap > >gv
 
 "somehow lightline not working without this
 set laststatus=2
-
-let mapleader = ","
 
 "colorscheme and font
 colorscheme molokai
@@ -79,6 +78,7 @@ set list
 set clipboard=unnamed
 
 let NERDTreeShowHidden=1
+let g:NERDTreeWinSize=40
 "ctrlp related settings"
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_max_files=0
@@ -96,7 +96,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
 
 "syntax highlighting
 filetype off
