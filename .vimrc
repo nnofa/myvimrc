@@ -11,12 +11,12 @@ Plug 'vim-scripts/copypath.vim'
 Plug 'tomasr/molokai'
 Plug 'pangloss/vim-javascript'
 Plug 'KabbAmine/gulp-vim'
-Plug 'vim-syntastic/syntastic'
 Plug 'itchyny/lightline.vim'
+Plug 'w0rp/ale'
 
 call plug#end()
 
-cd $NG
+cd $tw
 
 inoremap jj <Esc>
 inoremap ()h ()<Esc>i
@@ -26,12 +26,15 @@ inoremap {}h {}<Esc>i
 inoremap {};h {}<Esc>hi
 inoremap ()= () => {<CR>}<Esc>O
 inoremap <C-Space> <C-x><C-o>
-nnoremap <C-w><C-d> :cd $NG<CR>
-nnoremap <C-n> :NERDTreeToggle<CR>
-nnoremap <C-b> :NERDTreeFind<CR>
+nnoremap <C-w><C-d>1 :cd $WebClient<CR>
+nnoremap <C-w><C-d>2 :cd $WebClient<CR> :cd ../modules<CR>
+nnoremap <C-n><C-t> :NERDTreeToggle<CR>
+nnoremap <C-n><C-f> :NERDTreeFind<CR>
 nnoremap <C-w><C-r> :Rfindstring
 nnoremap <C-w><C-f> :Findstring
 
+nnoremap H gT
+nnoremap L gt
 nnoremap <C-z><C-o> :set guifont=Consolas:h10<CR>
 nnoremap <C-z><C-i> :set guifont=Consolas:h12<CR>
 nnoremap / /\c
@@ -39,7 +42,7 @@ nnoremap / /\c
 "save
 noremap <C-s> :w<CR>
 vnoremap <C-s> <C-c>:w<CR>
-inoremap <C-s> <C-o>:w<CR>
+inoremap <C-s> <C-c>:w<CR>
 
 "sort
 vnoremap <Leader>s :sort<CR>
@@ -78,6 +81,8 @@ set list
 set clipboard=unnamed
 
 let NERDTreeShowHidden=1
+let NERDTReeShowLineNumbers=1
+autocmd FileType nerdtree setlocal relativenumber
 let g:NERDTreeWinSize=40
 "ctrlp related settings"
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
@@ -85,17 +90,6 @@ let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=40
 let g:ctrlp_by_filename=1
 let g:ctrlp_regexp=1
-
-"syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
 
 "syntax highlighting
 filetype off
