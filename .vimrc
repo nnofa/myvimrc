@@ -91,6 +91,14 @@ let g:ctrlp_max_depth=40
 let g:ctrlp_by_filename=1
 let g:ctrlp_regexp=1
 
+"ale setting
+let g:ale_lint_on_text_changed='never'
+let g:ale_lint_on_insert_leave=1
+let g:ale_lint_on_enter=0
+
+let g:ale_linters = {
+      \ 'typescript': ['tsuquyomi', 'tslint']
+      \}
 "syntax highlighting
 filetype off
 filetype plugin indent on
