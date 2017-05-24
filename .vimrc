@@ -13,6 +13,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'KabbAmine/gulp-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
+Plug 'jeetsukumaran/vim-buffergator'
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
@@ -28,10 +30,10 @@ inoremap ()= () => {<CR>}<Esc>O
 inoremap <C-Space> <C-x><C-o>
 nnoremap <C-w><C-d>1 :cd $WebClient<CR>
 nnoremap <C-w><C-d>2 :cd $WebClient<CR> :cd ../modules<CR>
-nnoremap <C-n><C-t> :NERDTreeToggle<CR>
-nnoremap <C-n><C-f> :NERDTreeFind<CR>
-nnoremap <C-w><C-r> :Rfindstring
-nnoremap <C-w><C-f> :Findstring
+nnoremap <Leader>nt :NERDTreeToggle<CR>
+nnoremap <Leader>nf :NERDTreeFind<CR>
+nnoremap <Leader>rf :Rfindstring<Space>
+nnoremap <Leader>ff :Findstring<Space>
 
 nnoremap H gT
 nnoremap L gt
@@ -99,6 +101,8 @@ let g:ale_lint_on_enter=0
 let g:ale_linters = {
       \ 'typescript': ['tsuquyomi', 'tslint']
       \}
+
+let g:ale_typescript_tslint_config_path = '~\tslint.json'
 "syntax highlighting
 filetype off
 filetype plugin indent on
@@ -106,6 +110,7 @@ syntax on
 
 set pastetoggle=<F2>
 
+let g:buffergator_autoexpand_on_split = 0
 "lightline settings (the status bar below the stuff)
 let g:lightline = {
       \ 'active': {
