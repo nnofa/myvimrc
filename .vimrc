@@ -9,6 +9,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/copypath.vim'
 Plug 'tomasr/molokai'
+Plug 'altercation/vim-colors-solarized'
 Plug 'pangloss/vim-javascript'
 Plug 'KabbAmine/gulp-vim'
 Plug 'itchyny/lightline.vim'
@@ -58,7 +59,8 @@ vnoremap > >gv
 set laststatus=2
 
 "colorscheme and font
-colorscheme molokai
+colorscheme solarized
+set background=light
 set guifont=Consolas:h10
 
 nnoremap <Leader>ev :vs $MYVIMRC<CR>
@@ -108,8 +110,10 @@ let g:ale_linters = {
       \}
 
 let g:ale_typescript_tslint_config_path = '~\tslint.json'
-nnoremap <C-k> :ALEPrevious<CR>
-nnoremap <C-j> :ALENext<CR>
+nnoremap <PageUp> :ALEPrevious<CR>
+nnoremap <PageDown> :ALENext<CR>
+nnoremap <Up> :cp<CR>
+nnoremap <Down> :cn<CR>
 autocmd filetype typescript :nnoremap <buffer> <C-@> :TsuquyomiReferences<CR>
 
 "syntax highlighting
@@ -122,6 +126,7 @@ set pastetoggle=<F2>
 let g:buffergator_autoexpand_on_split = 0
 "lightline settings (the status bar below the stuff)
 let g:lightline = {
+      \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'fugitive', 'readonly', 'filename', 'modified' ]]
