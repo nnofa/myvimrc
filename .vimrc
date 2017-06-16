@@ -105,14 +105,20 @@ let g:ale_lint_on_insert_leave=1
 let g:ale_lint_on_enter=0
 
 let g:ale_linters = {
-      \ 'typescript': ['typecheck', 'tslint']
+      \ 'typescript': ['typecheck', 'tslint'],
+      \ 'javascript': ['eslint']
       \}
 
 let g:ale_typescript_tslint_config_path = '~\tslint.json'
+let g:ale_javascript_eslint_options = '~\.eslintrc'
+let g:ale_javascript_eslint_use_global = 1
+
 nnoremap <PageUp> :ALEPrevious<CR>
 nnoremap <PageDown> :ALENext<CR>
 nnoremap <Up> :cp<CR>
 nnoremap <Down> :cn<CR>
+nnoremap <leader>j :lnext<CR>
+nnoremap <leader>k :lpr<CR>
 autocmd filetype typescript :nnoremap <buffer> <C-@> :TsuquyomiReferences<CR>
 
 "syntax highlighting
@@ -156,3 +162,15 @@ nnoremap <Leader>gw :Gwrite<CR>
 nnoremap <Leader>gr :Gread<CR>
 nnoremap <Leader>gcm :Gcommit<CR>
 nnoremap <Leader>gch :Git checkout 
+nnoremap <Leader>gp :Git push<CR>
+
+let NERDSpaceDelims=1
+if has("gui_running")
+    set guioptions=icpM
+    if has('win32') || has('win64')
+        if (v:version == 704 && has("patch393")) || v:version > 704
+            set renderoptions=type:directx,level:0.75,gamma:1.25,contrast:0.25,
+                        \geom:1,renmode:5,taamode:1
+        endif
+    endif
+endif
