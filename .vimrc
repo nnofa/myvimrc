@@ -16,7 +16,6 @@ Plug 'w0rp/ale'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-vinegar'
-Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
@@ -92,7 +91,6 @@ nnoremap <F9> :%s/\s\+$//e<CR>
 set clipboard=unnamed
 
 "ctrlp related settings"
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=40
 let g:ctrlp_by_filename=1
@@ -173,4 +171,12 @@ if has("gui_running")
                         \geom:1,renmode:5,taamode:1
         endif
     endif
+endif
+
+if executable('rg')
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command= 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_use_caching=0
+else
+  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 endif
