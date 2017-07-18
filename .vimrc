@@ -16,6 +16,7 @@ Plug 'w0rp/ale'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-vinegar'
+Plug 'ajh17/VimCompletesMe'
 
 call plug#end()
 
@@ -62,7 +63,7 @@ set laststatus=2
 
 "colorscheme and font
 colorscheme solarized
-set background=light
+set background=dark
 set guifont=Consolas:h10
 
 nnoremap <Leader>ev :vs $MYVIMRC<CR>
@@ -93,8 +94,8 @@ set clipboard=unnamed
 "ctrlp related settings"
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=40
-let g:ctrlp_by_filename=1
-let g:ctrlp_regexp=1
+" let g:ctrlp_by_filename=1
+" let g:ctrlp_regexp=1
 let g:ctrlp_working_path_mode=''
 
 "ale setting
@@ -115,6 +116,8 @@ nnoremap <PageUp> :ALEPrevious<CR>
 nnoremap <PageDown> :ALENext<CR>
 nnoremap <Up> :cp<CR>
 nnoremap <Down> :cn<CR>
+nnoremap <Left> :bp<CR>
+nnoremap <Right> :bn<CR>
 nnoremap <leader>j :lnext<CR>
 nnoremap <leader>k :lpr<CR>
 autocmd filetype typescript :nnoremap <buffer> <C-@> :TsuquyomiReferences<CR>
@@ -176,7 +179,27 @@ endif
 if executable('rg')
   set grepprg=rg\ --color=never
   let g:ctrlp_user_command= 'rg %s --files --color=never --glob ""'
-  let g:ctrlp_use_caching=0
 else
   let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+endif
+
+" file is large from 1MB
+let g:LargeFile = 1024 * 900
+augroup LargeFile 
+ autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
+augroup END
+
+if !exists('*LargeFile')
+  function LargeFile()
+   " no syntax highlighting etc
+   set eventignore+=FileType
+   " save memory when other file is viewed
+   setlocal bufhidden=unload
+   " is read-only (write with :w new_filename)
+   " setlocal buftype=nowrite
+   " no undo possible
+   setlocal undolevels=-1
+   " display message
+   autocmd VimEnter *  echo "The file is larger than " . (g:LargeFile / 1024 /1024 ) . " MB, so some options are changed (see .vimrc for details)."
+  endfunction
 endif
