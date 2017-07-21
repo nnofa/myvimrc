@@ -7,8 +7,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-scripts/findstr.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-scripts/copypath.vim'
-Plug 'tomasr/molokai'
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
 Plug 'pangloss/vim-javascript'
 Plug 'KabbAmine/gulp-vim'
 Plug 'itchyny/lightline.vim'
@@ -17,6 +16,7 @@ Plug 'jeetsukumaran/vim-buffergator'
 Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-vinegar'
 Plug 'ajh17/VimCompletesMe'
+Plug 'flazz/vim-colorschemes'
 
 call plug#end()
 
@@ -62,9 +62,9 @@ vnoremap > >gv
 set laststatus=2
 
 "colorscheme and font
-colorscheme solarized
+colorscheme aiseered
 set background=dark
-set guifont=Consolas:h10
+set guifont=Consolas:h11
 
 nnoremap <Leader>ev :vs $MYVIMRC<CR>
 nnoremap <Leader>sv :so $MYVIMRC<CR>
@@ -82,7 +82,7 @@ set tabstop=2
 set shiftwidth=2
 set ruler
 set nowrap
-set foldmethod=syntax
+set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
 set foldlevel=2
@@ -132,7 +132,6 @@ set pastetoggle=<F2>
 let g:buffergator_autoexpand_on_split = 0
 "lightline settings (the status bar below the stuff)
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'fugitive', 'readonly', 'filename', 'modified' ]]
