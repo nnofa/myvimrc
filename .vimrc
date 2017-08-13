@@ -20,12 +20,7 @@ Plug 'flazz/vim-colorschemes'
 
 call plug#end()
 
-cd $tw
-
 "temporary mapping
-nnoremap <Home> iteamspace.<Esc>
-nnoremap <End> iteamspace.components.<Esc>
-nnoremap <Insert> iteamspace.services.<Esc>
 inoremap jj <Esc>
 inoremap jk <Esc>
 inoremap ()h ()<Esc>i
@@ -35,8 +30,6 @@ inoremap {}h {}<Esc>i
 inoremap {};h {}<Esc>hi
 inoremap ()= () => {<CR>}<Esc>O
 inoremap <C-Space> <C-x><C-o>
-nnoremap <C-w><C-d>1 :cd $WebClient<CR>
-nnoremap <C-w><C-d>2 :cd $WebClient<CR> :cd ../modules<CR>
 nnoremap <Leader>rf :Rfindstring<Space>
 nnoremap <Leader>ff :Findstring<Space>
 
@@ -47,9 +40,9 @@ nnoremap <C-z><C-i> :set guifont=Consolas:h12<CR>
 nnoremap / /\c
 
 "save
-noremap <C-s> :w<CR>
-vnoremap <C-s> <C-c>:w<CR>
-inoremap <C-s> <C-c>:w<CR>
+noremap <Leader>s :w<CR>
+vnoremap <Leader>s <C-c>:w<CR>
+inoremap <Leader>s <C-c>:w<CR>
 
 "sort
 vnoremap <Leader>s :sort<CR>
@@ -62,9 +55,8 @@ vnoremap > >gv
 set laststatus=2
 
 "colorscheme and font
-colorscheme aiseered
+colorscheme molokai
 set background=dark
-set guifont=Consolas:h11
 
 nnoremap <Leader>ev :vs $MYVIMRC<CR>
 nnoremap <Leader>sv :so $MYVIMRC<CR>
@@ -88,8 +80,6 @@ set nofoldenable
 set foldlevel=2
 nnoremap <F9> :%s/\s\+$//e<CR>
 " set list
-
-set clipboard=unnamed
 
 "ctrlp related settings"
 let g:ctrlp_max_files=0
