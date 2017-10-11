@@ -40,16 +40,16 @@ nnoremap <C-w><C-d>2 :cd $WebClient<CR> :cd ../modules<CR>
 nnoremap <Leader>rf :Rfindstring<Space>
 nnoremap <Leader>ff :Findstring<Space>
 
-nnoremap H gT
-nnoremap L gt
 nnoremap <C-z><C-o> :set guifont=Consolas:h10<CR>
 nnoremap <C-z><C-i> :set guifont=Consolas:h12<CR>
-nnoremap / /\c
+nnoremap <Leader>y "+y
+nnoremap <Leader>p "+p
+noremap / /\c
 
 "save
-noremap <C-s> :w<CR>
-vnoremap <C-s> <C-c>:w<CR>
-inoremap <C-s> <C-c>:w<CR>
+" noremap <C-s> :w<CR>
+" vnoremap <C-s> <C-c>:w<CR>
+" inoremap <C-s> <C-c>:w<CR>
 
 "sort
 vnoremap <Leader>s :sort<CR>
@@ -62,7 +62,7 @@ vnoremap > >gv
 set laststatus=2
 
 "colorscheme and font
-colorscheme aiseered
+colorscheme PaperColor
 set background=dark
 set guifont=Consolas:h11
 
@@ -89,8 +89,6 @@ set foldlevel=2
 nnoremap <F9> :%s/\s\+$//e<CR>
 " set list
 
-set clipboard=unnamed
-
 "ctrlp related settings"
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=40
@@ -103,8 +101,13 @@ let g:ale_lint_on_text_changed='never'
 let g:ale_lint_on_insert_leave=1
 let g:ale_lint_on_enter=0
 
+" let g:ale_linters = {
+      " \ 'typescript': ['typecheck', 'tslint'],
+      " \ 'javascript': ['eslint']
+      " \}
+
 let g:ale_linters = {
-      \ 'typescript': ['typecheck', 'tslint'],
+      \ 'typescript': ['typecheck'],
       \ 'javascript': ['eslint']
       \}
 
@@ -185,20 +188,12 @@ endif
 " file is large from 1MB
 let g:LargeFile = 1024 * 900
 augroup LargeFile 
- autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
+  au BufReadPre *
+    \ let f=expand("<afile>") |
+    \ if getfsize(f) > g:LargeFile |
+            \ set eventignore+=FileType |
+            \ setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 |
+    \ else |
+            \ set eventignore-=FileType |
+    \ endif
 augroup END
-
-if !exists('*LargeFile')
-  function LargeFile()
-   " no syntax highlighting etc
-   set eventignore+=FileType
-   " save memory when other file is viewed
-   setlocal bufhidden=unload
-   " is read-only (write with :w new_filename)
-   " setlocal buftype=nowrite
-   " no undo possible
-   setlocal undolevels=-1
-   " display message
-   autocmd VimEnter *  echo "The file is larger than " . (g:LargeFile / 1024 /1024 ) . " MB, so some options are changed (see .vimrc for details)."
-  endfunction
-endif
