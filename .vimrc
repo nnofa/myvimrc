@@ -1,8 +1,8 @@
 ﻿call plug#begin('~/.vim/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'Quramy/tsuquyomi'
-Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'tpope/vim-fugitive'
 Plug 'vim-scripts/findstr.vim'
 Plug 'scrooloose/nerdcommenter'
@@ -17,6 +17,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-vinegar'
 Plug 'ajh17/VimCompletesMe'
 Plug 'flazz/vim-colorschemes'
+Plug 'fatih/vim-go'
 
 call plug#end()
 
@@ -55,7 +56,7 @@ vnoremap > >gv
 set laststatus=2
 
 "colorscheme and font
-colorscheme molokai
+colorscheme PaperColor
 set background=dark
 
 nnoremap <Leader>ev :vs $MYVIMRC<CR>
@@ -70,8 +71,11 @@ set backspace=2
 
 "set tab to 2
 set expandtab
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
+au BufNewFile,BufRead *.ts,*.js,*css,*.html
+  \ set tabstop=2 |
+  \ set shiftwidth=2
 set ruler
 set nowrap
 set foldmethod=indent
@@ -137,10 +141,6 @@ let g:lightline = {
       \ 'separator': { 'left': "", 'right': "" },
       \ 'subseparator': { 'left': "|", 'right': "|" }
       \ }
-
-set backupdir=~/.vim/backup//
-set directory=~/.vim/swap//
-set undodir=~/.vim/undo//
 
 "fugitive settings
 nnoremap <Leader>gs :Gstatus<CR>
