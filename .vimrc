@@ -4,12 +4,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Quramy/tsuquyomi'
 Plug 'leafgarland/typescript-vim'
 Plug 'tpope/vim-fugitive'
-Plug 'vim-scripts/findstr.vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'vim-scripts/copypath.vim'
-" Plug 'altercation/vim-colors-solarized'
 Plug 'pangloss/vim-javascript'
-Plug 'KabbAmine/gulp-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 Plug 'jeetsukumaran/vim-buffergator'
@@ -19,8 +15,6 @@ Plug 'ajh17/VimCompletesMe'
 Plug 'flazz/vim-colorschemes'
 
 call plug#end()
-
-cd $tw
 
 "temporary mapping
 nnoremap <Home> iteamspace.<Esc>
@@ -62,7 +56,6 @@ vnoremap > >gv
 set laststatus=2
 
 "colorscheme and font
-colorscheme PaperColor
 set background=dark
 set guifont=Consolas:h11
 
@@ -87,6 +80,7 @@ set foldnestmax=10
 set nofoldenable
 set foldlevel=2
 nnoremap <F9> :%s/\s\+$//e<CR>
+set clipboard=unnamed
 " set list
 
 "ctrlp related settings"
@@ -176,6 +170,9 @@ if has("gui_running")
                         \geom:1,renmode:5,taamode:1
         endif
     endif
+    colorscheme PaperColor
+else
+    colorscheme zenburn
 endif
 
 if executable('rg')
@@ -192,7 +189,7 @@ augroup LargeFile
     \ let f=expand("<afile>") |
     \ if getfsize(f) > g:LargeFile |
             \ set eventignore+=FileType |
-            \ setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 |
+            \ setlocal noswapfile bufhidden=unload undolevels=-1 |
     \ else |
             \ set eventignore-=FileType |
     \ endif
