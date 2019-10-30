@@ -17,9 +17,6 @@ Plug 'flazz/vim-colorschemes'
 call plug#end()
 
 "temporary mapping
-nnoremap <Home> iteamspace.<Esc>
-nnoremap <End> iteamspace.components.<Esc>
-nnoremap <Insert> iteamspace.services.<Esc>
 inoremap jj <Esc>
 inoremap jk <Esc>
 inoremap ()h ()<Esc>i
@@ -29,8 +26,6 @@ inoremap {}h {}<Esc>i
 inoremap {};h {}<Esc>hi
 inoremap ()= () => {<CR>}<Esc>O
 inoremap <C-Space> <C-x><C-o>
-nnoremap <C-w><C-d>1 :cd $WebClient<CR>
-nnoremap <C-w><C-d>2 :cd $WebClient<CR> :cd ../modules<CR>
 nnoremap <Leader>rf :Rfindstring<Space>
 nnoremap <Leader>ff :Findstring<Space>
 
